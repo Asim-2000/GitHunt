@@ -1,16 +1,10 @@
-import { Box,Image,Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react"
+import { PageHeader } from "./components/PageHeader"
 
 export function Feed() {
-    return (
-        <Box maxWidth="1200px" mx='auto'>
-            <Box display="flex">
-                <Box>
-                   <Image/>
-                </Box>
-                <Box>
-                    <Button colorScheme="teal">View Source</Button>
-                </Box>
-            </Box>   
-        </Box>
-    )
+  return (
+    <Box maxWidth="1200px" mx="auto">
+      <PageHeader />
+    </Box>
+  )
 }
