@@ -1,13 +1,68 @@
-import { Flex, Select } from "@chakra-ui/react"
+import {
+  Select,
+  Menu,
+  MenuList,
+  MenuButton,
+  MenuItem,
+  Button,
+  Stack,
+} from "@chakra-ui/react"
+import { FaCalendar, FaList, FaTable } from "react-icons/fa"
+
 import languages from "../data/languages.json"
 export function Filters() {
   return (
-    <Flex>
-      <Select>
+    <Stack isInline>
+      <Select bg="white">
         {languages.map((language) => (
           <option value={language.value}>{language.label}</option>
         ))}
       </Select>
-    </Flex>
+      <Menu>
+        <MenuButton
+          as={Button}
+          role={Button}
+          pr="60px"
+          leftIcon={<FaCalendar />}
+          bg="white"
+        >
+          Actions
+        </MenuButton>
+        <MenuList>
+          <MenuItem>Download</MenuItem>
+          <MenuItem>Create a Copy</MenuItem>
+          <MenuItem>Mark as Draft</MenuItem>
+          <MenuItem>Delete</MenuItem>
+          <MenuItem>Attend a Workshop</MenuItem>
+        </MenuList>
+      </Menu>
+      <Stack
+        isInline
+        spacing={0}
+        borderWidth={1}
+        rounded="5px"
+        alignItems="center"
+        ml="10px"
+      >
+        <Button
+          h="100%"
+          fontWeight={400}
+          roundedRight={0}
+          leftIcon={<FaTable />}
+          bg="white"
+        >
+          Grid
+        </Button>
+        <Button
+          h="100%"
+          fontWeight={400}
+          roundedRight={0}
+          leftIcon={<FaList />}
+          bg="white"
+        >
+          List
+        </Button>
+      </Stack>
+    </Stack>
   )
 }

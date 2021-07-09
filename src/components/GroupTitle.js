@@ -4,7 +4,7 @@ export function GroupTitle() {
   return (
     <Box>
       <Text fontSize="24px" fontWeight={700}>
-        This week{" "}
+        This week
         <Text
           as="span"
           fontSize="15px"
