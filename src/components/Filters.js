@@ -6,6 +6,7 @@ import {
   MenuItem,
   Button,
   Stack,
+  ButtonGroup,
 } from "@chakra-ui/react"
 import { FaCalendar, FaList, FaTable } from "react-icons/fa"
 
@@ -36,16 +37,9 @@ export function Filters() {
           <MenuItem>Attend a Workshop</MenuItem>
         </MenuList>
       </Menu>
-      <Stack
-        isInline
-        spacing={0}
-        borderWidth={1}
-        rounded="5px"
-        alignItems="center"
-        ml="10px"
-      >
+
+      <ButtonGroup spacing={0}>
         <Button
-          h="100%"
           fontWeight={400}
           roundedRight={0}
           leftIcon={<FaTable />}
@@ -54,15 +48,14 @@ export function Filters() {
           Grid
         </Button>
         <Button
-          h="100%"
           fontWeight={400}
-          roundedRight={0}
+          roundedLeft={0}
           leftIcon={<FaList />}
           bg="white"
         >
           List
         </Button>
-      </Stack>
+      </ButtonGroup>
     </Stack>
   )
 }
