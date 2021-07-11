@@ -10,9 +10,16 @@ import {
 } from "@chakra-ui/react"
 import { FaCalendar, FaList, FaTable } from "react-icons/fa"
 import { BsFunnelFill } from "react-icons/bs"
+import { useEffect, useState } from "react"
 
 import languages from "../data/languages.json"
-export function Filters() {
+export function Filters({ onViewChange }) {
+  const [ViewType, setViewType] = useState("grid")
+
+  useEffect(() => {
+    onViewChange(ViewType)
+  }, [ViewType])
+
   return (
     <Stack isInline>
       <Select bg="white" icon={<BsFunnelFill />}>
@@ -41,18 +48,20 @@ export function Filters() {
 
       <ButtonGroup spacing={0}>
         <Button
+          onClick={() => setViewType("grid")}
           fontWeight={400}
           roundedRight={0}
           leftIcon={<FaTable />}
-          bg="white"
+          bg={ViewType === "grid" ? "gray.200" : "white"}
         >
           Grid
         </Button>
         <Button
+          onClick={() => setViewType("list")}
           fontWeight={400}
           roundedLeft={0}
           leftIcon={<FaList />}
-          bg="white"
+          bg={ViewType === "list" ? "gray.200" : "white"}
         >
           List
         </Button>
