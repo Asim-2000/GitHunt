@@ -1,20 +1,19 @@
-import { Button, Flex, Stack } from "@chakra-ui/react"
-import { FaGithub, FaTwitter, FaChrome } from "react-icons/fa"
+import { Button, ButtonGroup, Flex } from "@chakra-ui/react"
+import { FaGithub, FaTwitter } from "react-icons/fa"
 import { Brand } from "./Brand"
 
 export function PageHeader() {
   return (
     <Flex justifyContent="space-between" alignItems="center" pt="10px">
       <Brand />
-      <Stack isInline spacing="10px">
-        <Button leftIcon={<FaGithub />}>View Source</Button>
-        <Button leftIcon={<FaChrome />} colorScheme="red">
-          Use Extension
+      <ButtonGroup>
+        <Button variant="outline" leftIcon={<FaGithub />}>
+          View Source
         </Button>
-        <Button leftIcon={<FaTwitter />} colorScheme="purple">
+        <Button leftIcon={<FaTwitter />} colorScheme="twitter">
           Tweet
         </Button>
-      </Stack>
+      </ButtonGroup>
     </Flex>
   )
 }

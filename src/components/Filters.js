@@ -9,12 +9,13 @@ import {
   ButtonGroup,
 } from "@chakra-ui/react"
 import { FaCalendar, FaList, FaTable } from "react-icons/fa"
+import { BsFunnelFill } from "react-icons/bs"
 
 import languages from "../data/languages.json"
 export function Filters() {
   return (
     <Stack isInline>
-      <Select bg="white">
+      <Select bg="white" icon={<BsFunnelFill />}>
         {languages.map((language) => (
           <option value={language.value}>{language.label}</option>
         ))}
