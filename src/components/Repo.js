@@ -24,7 +24,9 @@ export function Repo({ isListView }) {
             />
             <Box ml="10px">
               <Heading fontSize="15px">Asim-2000</Heading>
-              <Text fontSize="13px">View Profile</Text>
+              <Text as="a" href="https://github.com/Asim-2000" fontSize="13px">
+                View Profile
+              </Text>
             </Box>
           </Flex>
         )}
@@ -34,13 +36,21 @@ export function Repo({ isListView }) {
             <Flex fontSize="19px" fontWeight={700} color="purple.700" mb="3px">
               {isListView && (
                 <>
-                  <Text as="a" href="" target="_blank">
+                  <Text
+                    as="a"
+                    href="https://github.com/Asim-2000/GitHunt"
+                    target="_blank"
+                  >
                     Asim-2000
                   </Text>
                   &nbsp;/&nbsp;
                 </>
               )}
-              <Text as="a" href="" target="_blank">
+              <Text
+                as="a"
+                href="https://github.com/Asim-2000/GitHunt"
+                target="_blank"
+              >
                 GitHunt
               </Text>
             </Flex>

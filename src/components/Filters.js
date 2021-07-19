@@ -7,13 +7,20 @@ import {
   Button,
   Stack,
   ButtonGroup,
+  Box,
 } from "@chakra-ui/react"
 import { FaCalendar, FaList, FaTable } from "react-icons/fa"
 import { BsFunnelFill } from "react-icons/bs"
 import { useEffect, useState } from "react"
 
 import languages from "../data/languages.json"
-export function Filters({ onViewChange }) {
+export function Filters({
+  onViewChange,
+  language,
+  setLanguage,
+  dateJump,
+  setDateJump,
+}) {
   const [ViewType, setViewType] = useState("grid")
 
   useEffect(() => {
@@ -22,7 +29,12 @@ export function Filters({ onViewChange }) {
 
   return (
     <Stack isInline>
-      <Select bg="white" icon={<BsFunnelFill />}>
+      <Select
+        bg="white"
+        icon={<BsFunnelFill />}
+        value={language}
+        onChange={(e) => setLanguage(e.target.value)}
+      >
         {languages.map((language) => (
           <option value={language.value}>{language.label}</option>
         ))}
@@ -35,14 +47,15 @@ export function Filters({ onViewChange }) {
           leftIcon={<FaCalendar />}
           bg="white"
         >
-          Actions
+          <Box as="span" textTransform="capitalize">
+            {dateJump}
+          </Box>
         </MenuButton>
         <MenuList>
-          <MenuItem>Download</MenuItem>
-          <MenuItem>Create a Copy</MenuItem>
-          <MenuItem>Mark as Draft</MenuItem>
-          <MenuItem>Delete</MenuItem>
-          <MenuItem>Attend a Workshop</MenuItem>
+          <MenuItem onClick={() => setDateJump("day")}>Daily</MenuItem>
+          <MenuItem onClick={() => setDateJump("week")}>Weekly</MenuItem>
+          <MenuItem onClick={() => setDateJump("month")}>Monthly</MenuItem>
+          <MenuItem onClick={() => setDateJump("year")}>Yearly</MenuItem>
         </MenuList>
       </Menu>
 
