@@ -7,11 +7,25 @@ import { PageHeader } from "./components/PageHeader"
 import { Repo } from "./components/Repo"
 import useFetch from "use-http"
 
+function transformFilters({ startDate, endDate, language }) {
+  const transformedFilters = {}
+
+  const languageQuery = language ? `language:${language} ` : ""
+  const dateQuery = `created:${startDate}..${endDate}`
+
+  transformedFilters.q = languageQuery + dateQuery
+  transformedFilters.sort = "start"
+  transformedFilters.order = "desc"
+
+  return transformedFilters
+}
+
 export function Feed() {
   const { loading, error, get } = useFetch("https://api.github.com")
   const [viewType, setViewType] = useState("grid")
   const [dateJump, setDateJump] = useState("day")
   const [language, setLanguage] = useState()
+  const [repositories, setRepositories] = useState([])
 
   const [startDate, setStartDate] = useState("")
   const [endDate, setEndDate] = useState(moment().subtract(1, "day").format())
@@ -22,13 +36,25 @@ export function Feed() {
     // console.log(endDate, startDate)
     setStartDate(startDate)
     setEndDate(endDate)
-  }, [dateJump])
+  }, [dateJump, language])
 
   useEffect(() => {
     if (!startDate) {
       return
     }
-    get("/search/repositories").then((res) => {
+
+    const filters = transformFilters({ startDate, endDate, language })
+
+    const filtersQuery = new URLSearchParams(filters).toString()
+    get(`/search/repositories?${filtersQuery}`).then((res) => {
+      setRepositories([
+        ...repositories,
+        {
+          startDate,
+          endDate,
+          items: res.items,
+        },
+      ])
       console.log(res)
     })
   }, [startDate])
